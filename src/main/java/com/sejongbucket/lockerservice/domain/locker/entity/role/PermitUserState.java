@@ -1,12 +1,18 @@
 package com.sejongbucket.lockerservice.domain.locker.entity.role;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.Embeddable;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-@Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Embeddable
 public class PermitUserState {
-    @Id
-    private Long id;
-    private String state;
-
+    private boolean isAttend;
+    private boolean isRest;
+    private boolean isGraduate;
 }

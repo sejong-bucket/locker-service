@@ -34,12 +34,14 @@ public class Locker extends BaseTimeEntity {
     @Schema(name = "사물함 보유 학과")
     private Long majorId;
 
-    private String imageUrl;
     private String totalRow;
     private String totalColumn;
 
-    @OneToMany
-    private List<PermitUserState> permitUserState = new ArrayList<>();
+    @Embedded
+    private PermitUserState permitUserState;
+
+    @OneToMany(mappedBy = "locker")
+    private List<LockerDetail> lockerDetails;
 
     /*@ElementCollection(targetClass = UserTier.class)
     @JoinTable(name = "PERMIT_USER_Tier_TABLE", joinColumns = @JoinColumn(name = "locker_id"))
@@ -81,9 +83,6 @@ public class Locker extends BaseTimeEntity {
         this.period = period;
     }
 
-    public void modifiedImageInfo(String newImageUrl) {
-        this.imageUrl=newImageUrl;
-    }
 
 
     /*public static Locker createLocker(LockerCreateDto lockercreateDto) {
